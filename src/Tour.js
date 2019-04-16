@@ -537,7 +537,7 @@ class Tour extends Component {
                         <Arrow
                           onClick={
                             typeof prevStep === 'function'
-                              ? prevStep(this.prevStep.bind(this))
+                              ? function() { prevStep(this.prevStep) }
                               : this.prevStep
                           }
                           disabled={current === 0}
@@ -573,7 +573,7 @@ class Tour extends Component {
                                 ? onRequestClose
                                 : () => {}
                               : typeof nextStep === 'function'
-                                ? nextStep(this.nextStep.bind(this))
+                                ? function() { nextStep(this.nextStep) }
                                 : this.nextStep
                           }
                           disabled={
