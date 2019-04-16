@@ -437,6 +437,9 @@ class Tour extends Component {
       focusUnlocked,
     } = this.state
 
+    const prevStepHandler = this.prevStep
+    const nextStepHandler = this.nextStep
+
     if (isOpen) {
       return (
         <Portal>
@@ -534,7 +537,7 @@ class Tour extends Component {
                         <Arrow
                           onClick={
                             typeof prevStep === 'function'
-                              ? () => prevStep(this.prevStep.bind(this))
+                              ? () => prevStep(prevStepHandler)
                               : this.prevStep
                           }
                           disabled={current === 0}
@@ -570,8 +573,8 @@ class Tour extends Component {
                                 ? onRequestClose
                                 : () => {}
                               : typeof nextStep === 'function'
-                              ? () => nextStep(this.nextStep.bind(this))
-                              : this.nextStep
+                                ? () => nextStep(nextStepHandler)
+                                : this.nextStep
                           }
                           disabled={
                             !lastStepNextButton && current === steps.length - 1
